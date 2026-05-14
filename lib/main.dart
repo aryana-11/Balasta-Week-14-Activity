@@ -4,21 +4,10 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'services/notification_service.dart';
 
 
-@pragma('vm:entry-point')
-Future<void> firebaseMessagingBackgroundHandler(RemoteMessage message) async {
-  await Firebase.initializeApp();
-  debugPrint('📨 Background message received');
-  debugPrint('  Title: ${message.notification?.title}');
-  debugPrint('  Body: ${message.notification?.body}');
-  debugPrint('  Data: ${message.data}');
-}
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
-  
-  FirebaseMessaging.onBackgroundMessage(firebaseMessagingBackgroundHandler);
   
   await NotificationService().initialize();
 
